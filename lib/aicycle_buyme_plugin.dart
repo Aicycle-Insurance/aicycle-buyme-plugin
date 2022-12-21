@@ -1,7 +1,4 @@
 library aicycle_buyme_plugin;
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'buy_me_folder_view/presentation/buy_me_folder_view.dart';
+export 'common/di/di_setup.dart';

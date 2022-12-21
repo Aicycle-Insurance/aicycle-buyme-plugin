@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:aicycle_buyme_plugin/common/di/di_setup.dart';
 import 'package:dio/dio.dart';
 import 'package:easy_localization/easy_localization.dart';
 
@@ -8,7 +7,7 @@ import '../constants/constants.dart';
 
 class ErrorHandling implements Exception {
   String errorMessage = "";
-  final Dio dio = getIt<Dio>();
+  // final Dio dio = Dio();
 
   ErrorHandling.withError({
     required DioError error,
@@ -57,20 +56,5 @@ class ErrorHandling implements Exception {
     }
 
     return errorMessage;
-  }
-
-  Future<void> refreshToken(DioError error) async {
-    error.requestOptions.cancelToken?.cancel();
-    String token = "";
-    //get new Token
-    final headers = error.requestOptions.headers;
-    headers['Authorization'] = token;
-    final opts = Options(method: error.requestOptions.method, headers: headers);
-    await dio.request(
-      error.requestOptions.path,
-      options: opts,
-      data: error.requestOptions.data,
-      queryParameters: error.requestOptions.queryParameters,
-    );
   }
 }

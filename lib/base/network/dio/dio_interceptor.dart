@@ -1,5 +1,7 @@
-import 'package:aicycle_buyme_plugin/common/utils/loading/loading_service.dart';
+import '../../../common/config/global_variable.dart';
 import 'package:dio/dio.dart';
+
+import '../../../common/utils/loading/loading_service.dart';
 import '../errors/error_handling.dart';
 
 class DioInterceptor extends Interceptor {
@@ -9,12 +11,12 @@ class DioInterceptor extends Interceptor {
     RequestInterceptorHandler handler,
   ) async {
     final Map<String, dynamic> header = {};
-    final String? token = '';
-    if (token != null) {
-      header["Authorization"] = "Bearer $token";
+    final String? tokenKey = token;
+    if (tokenKey != null) {
+      header["Authorization"] = "Bearer $tokenKey";
     }
-    final locale = '';
-    if (locale == "en_US") {
+    final localeCode = locale?.languageCode;
+    if (localeCode == "en") {
       header['lang'] = 'en';
     } else {
       header['lang'] = 'vi';

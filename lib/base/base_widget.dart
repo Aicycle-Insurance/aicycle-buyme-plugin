@@ -1,4 +1,4 @@
-import '../common/di/di_setup.dart';
+import '../common/config/global_variable.dart';
 import '../common/utils/loading/loading_service.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

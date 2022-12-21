@@ -10,7 +10,7 @@ dependencies:
   flutter:
     sdk: flutter
   cupertino_icons: ^1.0.2
-  aicyle_buyme_plugin:
+  aicycle_buyme_plugin:
     path: ../
 
 dev_dependencies:
