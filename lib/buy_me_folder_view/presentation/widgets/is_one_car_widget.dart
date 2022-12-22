@@ -1,4 +1,4 @@
-import 'package:aicycle_buyme_plugin/common/config/global_variable.dart';
+import '../../../common/config/global_variable.dart';
 
 import '../../../common/enum/check_car_state.dart';
 import '../../../common/theme/app_colors.dart';

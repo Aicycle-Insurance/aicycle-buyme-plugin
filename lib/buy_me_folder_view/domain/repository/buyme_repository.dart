@@ -1,4 +1,5 @@
-import 'package:aicycle_buyme_plugin/buy_me_folder_view/data/models/check_car_model/check_car_model.dart';
+import '../../../base/network/models/base_data.dart';
+import '../../data/models/check_car_model/check_car_model.dart';
 
 import '../../../base/network/errors/error.dart';
 import '../../data/models/image_model/image_model.dart';
@@ -12,4 +13,5 @@ abstract class BuyMeRepository {
   Future<Either<BaseError, CheckCarModel>> checkAllImageIsValidCar({
     required int id,
   });
+  Future<Either<BaseError, BaseData>> deleteImageById({required int imageId});
 }

@@ -1,5 +1,5 @@
-import 'package:aicycle_buyme_plugin/common/config/global_variable.dart';
-import 'package:aicycle_buyme_plugin/common/extensions/localization_extension.dart';
+import '../../../common/config/global_variable.dart';
+import '../../../common/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 // import 'package:easy_localization/easy_localization.dart';

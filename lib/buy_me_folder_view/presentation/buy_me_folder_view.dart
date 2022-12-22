@@ -1,3 +1,9 @@
+import 'dart:async';
+
+import '../../buy_me_camera/presentation/buy_me_camera_page.dart';
+import '../../common/enum/car_model.dart';
+import '../../common/event_bus/buy_me_call_engine_event.dart';
+
 import '../../common/config/global_variable.dart';
 
 import 'widgets/is_one_car_widget.dart';
@@ -13,11 +19,12 @@ import '../../common/widgets/cache_image_widget.dart';
 import '../../gen/assets.gen.dart';
 import '../../base/base_widget.dart';
 // import 'package:easy_localization/easy_localization.dart';
-import 'package:aicycle_buyme_plugin/common/extensions/localization_extension.dart';
+import '../../../common/extensions/localization_extension.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:collection/collection.dart';
+import 'package:event_bus/event_bus.dart';
 
 class AiCycleFolderView extends StatefulWidget {
   const AiCycleFolderView({
@@ -25,6 +32,7 @@ class AiCycleFolderView extends StatefulWidget {
     required this.tokenKey,
     required this.folderId,
     this.locale,
+    this.showIntro = false,
   });
 
   /// Liên hệ để lấy token
@@ -36,6 +44,9 @@ class AiCycleFolderView extends StatefulWidget {
   /// Id hồ sơ
   final int folderId;
 
+  /// Bật/Tắt hướng dẫn chụp ảnh (Mặc định: false)
+  final bool showIntro;
+
   @override
   State<AiCycleFolderView> createState() => _AiCycleFolderViewState();
 }
@@ -43,6 +54,7 @@ class AiCycleFolderView extends StatefulWidget {
 class _AiCycleFolderViewState extends BaseState<AiCycleFolderView,
     BuyMeFolderViewEvent, BuyMeFolderViewState, BuyMeFolderViewBloc> {
   late double screenWidth;
+  late StreamSubscription callEngineSub;
 
   @override
   void initState() {
@@ -51,6 +63,17 @@ class _AiCycleFolderViewState extends BaseState<AiCycleFolderView,
     token = widget.tokenKey;
     bloc.add(BuyMeFolderViewEvent.init(widget.folderId));
     bloc.add(BuyMeFolderViewEvent.checkCar(widget.folderId));
+    callEngineSub =
+        getIt<EventBus>().on<BuyMeCallEngineEvent>().listen((event) {
+      bloc.add(BuyMeFolderViewEvent.updateDirection(event.imageModel));
+      bloc.add(BuyMeFolderViewEvent.checkCar(widget.folderId));
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    callEngineSub.cancel();
   }
 
   @override
@@ -64,106 +87,104 @@ class _AiCycleFolderViewState extends BaseState<AiCycleFolderView,
           ? const Center(child: CupertinoActivityIndicator())
           : Container(
               color: const Color(0xFFE8EAF3),
-              child: Column(
-                children: [
-                  Expanded(
-                    child: SingleChildScrollView(
-                      physics: const BouncingScrollPhysics(),
-                      child: Column(
+              height: double.maxFinite,
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 24),
+                    IsOneCarWidget(checkCarModel: state.checkCarModel),
+                    Container(
+                      height: 500,
+                      width: screenWidth,
+                      padding: const EdgeInsets.symmetric(horizontal: 32),
+                      child: Stack(
+                        alignment: Alignment.center,
                         children: [
-                          const SizedBox(height: 24),
-                          IsOneCarWidget(checkCarModel: state.checkCarModel),
-                          Container(
-                            height: 500,
+                          SizedBox(
                             width: screenWidth,
-                            padding: const EdgeInsets.symmetric(horizontal: 32),
-                            child: Stack(
-                              alignment: Alignment.center,
-                              children: [
-                                SizedBox(
-                                  width: screenWidth,
-                                  child: Assets.images.car.image(
-                                    height: 167,
-                                    width: 113,
-                                    package: packageName,
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 0,
-                                  bottom: 0,
-                                  child: blocBuilder(
-                                    builder: (context, state) => _position(
-                                      direction:
-                                          CarPartDirectionEnum.d45LeftBack,
-                                      images: state.images,
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  right: 0,
-                                  bottom: 0,
-                                  child: blocBuilder(
-                                    builder: (context, state) => _position(
-                                      direction:
-                                          CarPartDirectionEnum.d45RightBack,
-                                      images: state.images,
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 0,
-                                  child: blocBuilder(
-                                    builder: (context, state) => _position(
-                                      images: state.images,
-                                      // direction: CarPartDirectionEnum.left,
-                                      direction: CarPartDirectionEnum.leftProd,
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  left: 0,
-                                  top: 0,
-                                  child: blocBuilder(
-                                    builder: (context, state) => _position(
-                                      images: state.images,
-                                      direction:
-                                          CarPartDirectionEnum.d45LeftFront,
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  right: 0,
-                                  top: 0,
-                                  child: blocBuilder(
-                                    builder: (context, state) => _position(
-                                      images: state.images,
-                                      direction:
-                                          CarPartDirectionEnum.d45RightFront,
-                                    ),
-                                  ),
-                                ),
-                              ],
+                            child: Assets.images.car.image(
+                              height: 167,
+                              width: 113,
+                              package: packageName,
+                            ),
+                          ),
+                          Positioned(
+                            left: 0,
+                            bottom: 0,
+                            child: blocBuilder(
+                              builder: (context, state) => _position(
+                                direction: CarPartDirectionEnum.d45LeftBack,
+                                images: state.images,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            bottom: 0,
+                            child: blocBuilder(
+                              builder: (context, state) => _position(
+                                direction: CarPartDirectionEnum.d45RightBack,
+                                images: state.images,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            left: 0,
+                            child: blocBuilder(
+                              builder: (context, state) => _position(
+                                images: state.images,
+                                // direction: CarPartDirectionEnum.left,
+                                direction: CarPartDirectionEnum.leftProd,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            left: 0,
+                            top: 0,
+                            child: blocBuilder(
+                              builder: (context, state) => _position(
+                                images: state.images,
+                                direction: CarPartDirectionEnum.d45LeftFront,
+                              ),
+                            ),
+                          ),
+                          Positioned(
+                            right: 0,
+                            top: 0,
+                            child: blocBuilder(
+                              builder: (context, state) => _position(
+                                images: state.images,
+                                direction: CarPartDirectionEnum.d45RightFront,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                      top: 16,
-                      bottom: 32,
-                    ),
-                    decoration: const BoxDecoration(color: Colors.white),
-                    child: AppButton(
-                      onPressed: () {},
-                      title: "view_results".tr(),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
+              // child: Column(
+              //   children: [
+              //     Expanded(
+              //       child:
+              //     ),
+              // Container(
+              //   padding: const EdgeInsets.only(
+              //     left: 16,
+              //     right: 16,
+              //     top: 16,
+              //     bottom: 32,
+              //   ),
+              //   decoration: const BoxDecoration(color: Colors.white),
+              //   child: AppButton(
+              //     onPressed: () {},
+              //     title: "view_results".tr(),
+              //   ),
+              // ),
+              //   ],
+              // ),
             ),
     );
   }
@@ -176,7 +197,22 @@ class _AiCycleFolderViewState extends BaseState<AiCycleFolderView,
         ?.firstWhereOrNull((e) => e.directionId == direction.id.toString())
         ?.imageUrl;
     return InkWell(
-      onTap: () {},
+      onTap: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) {
+              return BuyMeCameraPage(
+                argument: BuyMeCameraArgument(
+                  carPartDirectionEnum: direction,
+                  claimId: widget.folderId,
+                  carModelEnum: CarModelEnum.toyotaVios,
+                  showIntro: widget.showIntro,
+                ),
+              );
+            },
+          ),
+        );
+      },
       child: Column(
         children: [
           image == null

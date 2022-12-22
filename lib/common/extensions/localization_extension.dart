@@ -1,6 +1,6 @@
-import 'package:aicycle_buyme_plugin/common/config/global_variable.dart';
-import 'package:aicycle_buyme_plugin/common/translations/en.dart';
-import 'package:aicycle_buyme_plugin/common/translations/vi.dart';
+import '../../../common/config/global_variable.dart';
+import '../../../common/translations/en.dart';
+import '../../../common/translations/vi.dart';
 
 extension Localization on String {
   String tr() {

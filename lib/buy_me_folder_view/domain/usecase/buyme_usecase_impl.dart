@@ -1,4 +1,5 @@
-import 'package:aicycle_buyme_plugin/buy_me_folder_view/data/models/check_car_model/check_car_model.dart';
+import '../../../base/network/models/base_data.dart';
+import '../../data/models/check_car_model/check_car_model.dart';
 
 import '../../data/models/image_model/image_model.dart';
 import '../../../base/network/errors/error.dart';
@@ -22,5 +23,10 @@ class BuyMeUsecaseImpl implements BuyMeUsecase {
   @override
   Future<Either<BaseError, CheckCarModel>> checkAllImageIsValidCar(int id) {
     return repository.checkAllImageIsValidCar(id: id);
+  }
+
+  @override
+  Future<Either<BaseError, BaseData>> deleteImageById({required int imageId}) {
+    return repository.deleteImageById(imageId: imageId);
   }
 }
