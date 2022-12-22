@@ -350,16 +350,6 @@ class $AssetsSvgGen {
       const SvgGenImage('assets/svg/ic_warning_filled.svg');
 }
 
-class $AssetsTranslationsGen {
-  const $AssetsTranslationsGen();
-
-  /// File path: assets/translations/en-US.json
-  String get enUS => 'assets/translations/en-US.json';
-
-  /// File path: assets/translations/vi-VN.json
-  String get viVN => 'assets/translations/vi-VN.json';
-}
-
 class Assets {
   Assets._();
 
@@ -367,7 +357,6 @@ class Assets {
   static const $AssetsImagesGen images = $AssetsImagesGen();
   static const $AssetsLottiesGen lotties = $AssetsLottiesGen();
   static const $AssetsSvgGen svg = $AssetsSvgGen();
-  static const $AssetsTranslationsGen translations = $AssetsTranslationsGen();
 }
 
 class AssetGenImage {

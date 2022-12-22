@@ -1,3 +1,5 @@
+import 'package:aicycle_buyme_plugin/buy_me_folder_view/data/models/check_car_model/check_car_model.dart';
+
 import '../models/image_model/image_model.dart';
 import '../../../base/network/errors/error.dart';
 import '../sources/data_source.dart';
@@ -20,6 +22,22 @@ class BuyMeRepositoryImpl implements BuyMeRepository {
   }) async {
     try {
       final res = await _dataSource.getImages(id: id);
+      return right(res);
+    } catch (e) {
+      if (e is DioError) {
+        return left(e.baseError);
+      } else {
+        return left(BaseError.httpUnknownError('systemError'.tr()));
+      }
+    }
+  }
+
+  @override
+  Future<Either<BaseError, CheckCarModel>> checkAllImageIsValidCar({
+    required int id,
+  }) async {
+    try {
+      final res = await _dataSource.checkAllImageIsValidCar(id: id);
       return right(res);
     } catch (e) {
       if (e is DioError) {

@@ -128,6 +128,9 @@ mixin BaseMethodMixin<S extends BaseBlocState> {
       getIt<LoadingService>().showLoading(context);
     } else {
       getIt<LoadingService>().hideLoading();
+      if (state.status == BaseStateStatus.failed) {
+        print(state.message);
+      }
     }
   }
 }

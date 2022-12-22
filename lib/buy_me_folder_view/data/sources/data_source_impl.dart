@@ -1,3 +1,5 @@
+import 'package:aicycle_buyme_plugin/buy_me_folder_view/data/models/check_car_model/check_car_model.dart';
+
 import '../models/image_model/image_model.dart';
 import '../remote/buyme_remote.dart';
 import 'data_source.dart';
@@ -13,5 +15,10 @@ class BuyMeDataSourceImpl implements BuyMeDataSource {
     required int id,
   }) {
     return _remote.getImages(id: id);
+  }
+
+  @override
+  Future<CheckCarModel> checkAllImageIsValidCar({required int id}) {
+    return _remote.checkAllImageIsValidCar(id: id);
   }
 }

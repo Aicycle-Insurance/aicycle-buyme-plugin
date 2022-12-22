@@ -19,21 +19,21 @@ mixin _$BuyMeFolderViewEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int id) init,
-    required TResult Function(CheckCarModel? checkCarModel) updateIsOneCar,
+    required TResult Function(int id) checkCar,
     required TResult Function(ImageModel imageModel) updateDirection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int id)? init,
-    TResult? Function(CheckCarModel? checkCarModel)? updateIsOneCar,
+    TResult? Function(int id)? checkCar,
     TResult? Function(ImageModel imageModel)? updateDirection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? init,
-    TResult Function(CheckCarModel? checkCarModel)? updateIsOneCar,
+    TResult Function(int id)? checkCar,
     TResult Function(ImageModel imageModel)? updateDirection,
     required TResult orElse(),
   }) =>
@@ -41,21 +41,21 @@ mixin _$BuyMeFolderViewEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(UpdateIsOneCar value) updateIsOneCar,
+    required TResult Function(CheckCar value) checkCar,
     required TResult Function(UpdateDirection value) updateDirection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(UpdateIsOneCar value)? updateIsOneCar,
+    TResult? Function(CheckCar value)? checkCar,
     TResult? Function(UpdateDirection value)? updateDirection,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(UpdateIsOneCar value)? updateIsOneCar,
+    TResult Function(CheckCar value)? checkCar,
     TResult Function(UpdateDirection value)? updateDirection,
     required TResult orElse(),
   }) =>
@@ -144,7 +144,7 @@ class _$Init implements Init {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int id) init,
-    required TResult Function(CheckCarModel? checkCarModel) updateIsOneCar,
+    required TResult Function(int id) checkCar,
     required TResult Function(ImageModel imageModel) updateDirection,
   }) {
     return init(id);
@@ -154,7 +154,7 @@ class _$Init implements Init {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int id)? init,
-    TResult? Function(CheckCarModel? checkCarModel)? updateIsOneCar,
+    TResult? Function(int id)? checkCar,
     TResult? Function(ImageModel imageModel)? updateDirection,
   }) {
     return init?.call(id);
@@ -164,7 +164,7 @@ class _$Init implements Init {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? init,
-    TResult Function(CheckCarModel? checkCarModel)? updateIsOneCar,
+    TResult Function(int id)? checkCar,
     TResult Function(ImageModel imageModel)? updateDirection,
     required TResult orElse(),
   }) {
@@ -178,7 +178,7 @@ class _$Init implements Init {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(UpdateIsOneCar value) updateIsOneCar,
+    required TResult Function(CheckCar value) checkCar,
     required TResult Function(UpdateDirection value) updateDirection,
   }) {
     return init(this);
@@ -188,7 +188,7 @@ class _$Init implements Init {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(UpdateIsOneCar value)? updateIsOneCar,
+    TResult? Function(CheckCar value)? checkCar,
     TResult? Function(UpdateDirection value)? updateDirection,
   }) {
     return init?.call(this);
@@ -198,7 +198,7 @@ class _$Init implements Init {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(UpdateIsOneCar value)? updateIsOneCar,
+    TResult Function(CheckCar value)? checkCar,
     TResult Function(UpdateDirection value)? updateDirection,
     required TResult orElse(),
   }) {
@@ -218,111 +218,95 @@ abstract class Init implements BuyMeFolderViewEvent {
 }
 
 /// @nodoc
-abstract class _$$UpdateIsOneCarCopyWith<$Res> {
-  factory _$$UpdateIsOneCarCopyWith(
-          _$UpdateIsOneCar value, $Res Function(_$UpdateIsOneCar) then) =
-      __$$UpdateIsOneCarCopyWithImpl<$Res>;
+abstract class _$$CheckCarCopyWith<$Res> {
+  factory _$$CheckCarCopyWith(
+          _$CheckCar value, $Res Function(_$CheckCar) then) =
+      __$$CheckCarCopyWithImpl<$Res>;
   @useResult
-  $Res call({CheckCarModel? checkCarModel});
-
-  $CheckCarModelCopyWith<$Res>? get checkCarModel;
+  $Res call({int id});
 }
 
 /// @nodoc
-class __$$UpdateIsOneCarCopyWithImpl<$Res>
-    extends _$BuyMeFolderViewEventCopyWithImpl<$Res, _$UpdateIsOneCar>
-    implements _$$UpdateIsOneCarCopyWith<$Res> {
-  __$$UpdateIsOneCarCopyWithImpl(
-      _$UpdateIsOneCar _value, $Res Function(_$UpdateIsOneCar) _then)
+class __$$CheckCarCopyWithImpl<$Res>
+    extends _$BuyMeFolderViewEventCopyWithImpl<$Res, _$CheckCar>
+    implements _$$CheckCarCopyWith<$Res> {
+  __$$CheckCarCopyWithImpl(_$CheckCar _value, $Res Function(_$CheckCar) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? checkCarModel = freezed,
+    Object? id = null,
   }) {
-    return _then(_$UpdateIsOneCar(
-      freezed == checkCarModel
-          ? _value.checkCarModel
-          : checkCarModel // ignore: cast_nullable_to_non_nullable
-              as CheckCarModel?,
+    return _then(_$CheckCar(
+      null == id
+          ? _value.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as int,
     ));
-  }
-
-  @override
-  @pragma('vm:prefer-inline')
-  $CheckCarModelCopyWith<$Res>? get checkCarModel {
-    if (_value.checkCarModel == null) {
-      return null;
-    }
-
-    return $CheckCarModelCopyWith<$Res>(_value.checkCarModel!, (value) {
-      return _then(_value.copyWith(checkCarModel: value));
-    });
   }
 }
 
 /// @nodoc
 
-class _$UpdateIsOneCar implements UpdateIsOneCar {
-  const _$UpdateIsOneCar(this.checkCarModel);
+class _$CheckCar implements CheckCar {
+  const _$CheckCar(this.id);
 
   @override
-  final CheckCarModel? checkCarModel;
+  final int id;
 
   @override
   String toString() {
-    return 'BuyMeFolderViewEvent.updateIsOneCar(checkCarModel: $checkCarModel)';
+    return 'BuyMeFolderViewEvent.checkCar(id: $id)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$UpdateIsOneCar &&
-            (identical(other.checkCarModel, checkCarModel) ||
-                other.checkCarModel == checkCarModel));
+            other is _$CheckCar &&
+            (identical(other.id, id) || other.id == id));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, checkCarModel);
+  int get hashCode => Object.hash(runtimeType, id);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$UpdateIsOneCarCopyWith<_$UpdateIsOneCar> get copyWith =>
-      __$$UpdateIsOneCarCopyWithImpl<_$UpdateIsOneCar>(this, _$identity);
+  _$$CheckCarCopyWith<_$CheckCar> get copyWith =>
+      __$$CheckCarCopyWithImpl<_$CheckCar>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int id) init,
-    required TResult Function(CheckCarModel? checkCarModel) updateIsOneCar,
+    required TResult Function(int id) checkCar,
     required TResult Function(ImageModel imageModel) updateDirection,
   }) {
-    return updateIsOneCar(checkCarModel);
+    return checkCar(id);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int id)? init,
-    TResult? Function(CheckCarModel? checkCarModel)? updateIsOneCar,
+    TResult? Function(int id)? checkCar,
     TResult? Function(ImageModel imageModel)? updateDirection,
   }) {
-    return updateIsOneCar?.call(checkCarModel);
+    return checkCar?.call(id);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? init,
-    TResult Function(CheckCarModel? checkCarModel)? updateIsOneCar,
+    TResult Function(int id)? checkCar,
     TResult Function(ImageModel imageModel)? updateDirection,
     required TResult orElse(),
   }) {
-    if (updateIsOneCar != null) {
-      return updateIsOneCar(checkCarModel);
+    if (checkCar != null) {
+      return checkCar(id);
     }
     return orElse();
   }
@@ -331,44 +315,43 @@ class _$UpdateIsOneCar implements UpdateIsOneCar {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(UpdateIsOneCar value) updateIsOneCar,
+    required TResult Function(CheckCar value) checkCar,
     required TResult Function(UpdateDirection value) updateDirection,
   }) {
-    return updateIsOneCar(this);
+    return checkCar(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(UpdateIsOneCar value)? updateIsOneCar,
+    TResult? Function(CheckCar value)? checkCar,
     TResult? Function(UpdateDirection value)? updateDirection,
   }) {
-    return updateIsOneCar?.call(this);
+    return checkCar?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(UpdateIsOneCar value)? updateIsOneCar,
+    TResult Function(CheckCar value)? checkCar,
     TResult Function(UpdateDirection value)? updateDirection,
     required TResult orElse(),
   }) {
-    if (updateIsOneCar != null) {
-      return updateIsOneCar(this);
+    if (checkCar != null) {
+      return checkCar(this);
     }
     return orElse();
   }
 }
 
-abstract class UpdateIsOneCar implements BuyMeFolderViewEvent {
-  const factory UpdateIsOneCar(final CheckCarModel? checkCarModel) =
-      _$UpdateIsOneCar;
+abstract class CheckCar implements BuyMeFolderViewEvent {
+  const factory CheckCar(final int id) = _$CheckCar;
 
-  CheckCarModel? get checkCarModel;
+  int get id;
   @JsonKey(ignore: true)
-  _$$UpdateIsOneCarCopyWith<_$UpdateIsOneCar> get copyWith =>
+  _$$CheckCarCopyWith<_$CheckCar> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -448,7 +431,7 @@ class _$UpdateDirection implements UpdateDirection {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(int id) init,
-    required TResult Function(CheckCarModel? checkCarModel) updateIsOneCar,
+    required TResult Function(int id) checkCar,
     required TResult Function(ImageModel imageModel) updateDirection,
   }) {
     return updateDirection(imageModel);
@@ -458,7 +441,7 @@ class _$UpdateDirection implements UpdateDirection {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function(int id)? init,
-    TResult? Function(CheckCarModel? checkCarModel)? updateIsOneCar,
+    TResult? Function(int id)? checkCar,
     TResult? Function(ImageModel imageModel)? updateDirection,
   }) {
     return updateDirection?.call(imageModel);
@@ -468,7 +451,7 @@ class _$UpdateDirection implements UpdateDirection {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(int id)? init,
-    TResult Function(CheckCarModel? checkCarModel)? updateIsOneCar,
+    TResult Function(int id)? checkCar,
     TResult Function(ImageModel imageModel)? updateDirection,
     required TResult orElse(),
   }) {
@@ -482,7 +465,7 @@ class _$UpdateDirection implements UpdateDirection {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Init value) init,
-    required TResult Function(UpdateIsOneCar value) updateIsOneCar,
+    required TResult Function(CheckCar value) checkCar,
     required TResult Function(UpdateDirection value) updateDirection,
   }) {
     return updateDirection(this);
@@ -492,7 +475,7 @@ class _$UpdateDirection implements UpdateDirection {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Init value)? init,
-    TResult? Function(UpdateIsOneCar value)? updateIsOneCar,
+    TResult? Function(CheckCar value)? checkCar,
     TResult? Function(UpdateDirection value)? updateDirection,
   }) {
     return updateDirection?.call(this);
@@ -502,7 +485,7 @@ class _$UpdateDirection implements UpdateDirection {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Init value)? init,
-    TResult Function(UpdateIsOneCar value)? updateIsOneCar,
+    TResult Function(CheckCar value)? checkCar,
     TResult Function(UpdateDirection value)? updateDirection,
     required TResult orElse(),
   }) {

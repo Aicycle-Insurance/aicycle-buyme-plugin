@@ -17,6 +17,7 @@ import 'package:aicycle_buyme_plugin/common/extensions/localization_extension.da
 
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:collection/collection.dart';
 
 class AiCycleFolderView extends StatefulWidget {
   const AiCycleFolderView({
@@ -49,6 +50,7 @@ class _AiCycleFolderViewState extends BaseState<AiCycleFolderView,
     locale = widget.locale;
     token = widget.tokenKey;
     bloc.add(BuyMeFolderViewEvent.init(widget.folderId));
+    bloc.add(BuyMeFolderViewEvent.checkCar(widget.folderId));
   }
 
   @override
@@ -171,8 +173,8 @@ class _AiCycleFolderViewState extends BaseState<AiCycleFolderView,
     required List<ImageModel>? images,
   }) {
     final String? image = images
-        ?.firstWhere((e) => e.directionId == direction.id.toString())
-        .imageUrl;
+        ?.firstWhereOrNull((e) => e.directionId == direction.id.toString())
+        ?.imageUrl;
     return InkWell(
       onTap: () {},
       child: Column(

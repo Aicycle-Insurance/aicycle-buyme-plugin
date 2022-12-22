@@ -40,8 +40,9 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: const AiCycleFolderView(
-        folderId: 1,
-        tokenKey: 'tokenKey',
+        folderId: 779,
+        tokenKey:
+            '6c7fd2:14333bd7d1864497874388697bee88bec88ad55d362d41e69a4552174d31fe07',
         locale: Locale('vi', 'VN'),
       ),
     );

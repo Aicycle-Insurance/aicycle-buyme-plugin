@@ -1,3 +1,5 @@
+import 'package:aicycle_buyme_plugin/buy_me_folder_view/data/models/check_car_model/check_car_model.dart';
+
 import '../models/image_model/image_model.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
@@ -13,6 +15,11 @@ abstract class BuyMeRemote {
 
   @GET("/insurance/claimFolder/{id}")
   Future<ImageInformationResponse> getImages({
+    @Path("id") required int id,
+  });
+
+  @GET("/insurance/checkCar/{id}")
+  Future<CheckCarModel> checkAllImageIsValidCar({
     @Path("id") required int id,
   });
 }

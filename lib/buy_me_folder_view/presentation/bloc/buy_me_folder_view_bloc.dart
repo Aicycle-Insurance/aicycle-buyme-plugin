@@ -23,7 +23,7 @@ class BuyMeFolderViewBloc
     ) async {
       await event.when(
         init: (id) => _onInit(emit, id),
-        updateIsOneCar: (checkCarModel) => _updateIsOneCar(emit, checkCarModel),
+        checkCar: (id) => _checkCar(id, emit),
         updateDirection: (imageModel) => _updateDirection(imageModel, emit),
       );
     });
@@ -48,17 +48,38 @@ class BuyMeFolderViewBloc
     );
   }
 
-  _updateIsOneCar(
-    Emitter<BuyMeFolderViewState> emit,
-    CheckCarModel? checkCarModel,
-  ) {
-    emit(
-      state.copyWith(
-        status: BaseStateStatus.idle,
-        checkCarModel: checkCarModel,
-        message: null,
-      ),
-    );
+  // _updateIsOneCar(
+  //   Emitter<BuyMeFolderViewState> emit,
+  //   CheckCarModel? checkCarModel,
+  // ) {
+  //   emit(
+  //     state.copyWith(
+  //       status: BaseStateStatus.idle,
+  //       checkCarModel: checkCarModel,
+  //       message: null,
+  //     ),
+  //   );
+  // }
+
+  _checkCar(int id, Emitter emit) async {
+    final res = await _useCase.checkAllImageIsValidCar(id);
+    res.fold((l) {
+      emit(
+        state.copyWith(
+          status: BaseStateStatus.failed,
+          checkCarModel: null,
+          message: l.getErrorMessage,
+        ),
+      );
+    }, (r) {
+      emit(
+        state.copyWith(
+          status: BaseStateStatus.success,
+          checkCarModel: r,
+          message: null,
+        ),
+      );
+    });
   }
 
   _updateDirection(ImageModel imageModel, Emitter emit) {
