@@ -1,6 +1,8 @@
+import 'package:aicycle_buyme_plugin/common/config/global_variable.dart';
+import 'package:aicycle_buyme_plugin/common/extensions/localization_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:easy_localization/easy_localization.dart';
+// import 'package:easy_localization/easy_localization.dart';
 
 import '../../gen/assets.gen.dart';
 
@@ -54,6 +56,7 @@ class AppLoading extends StatelessWidget {
                 height: 120,
                 width: 120,
                 fit: BoxFit.cover,
+                package: packageName,
               ),
               Positioned(
                 top: 90,

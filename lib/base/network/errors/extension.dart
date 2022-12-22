@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
-import 'package:easy_localization/easy_localization.dart';
+// import 'package:easy_localization/easy_localization.dart';
+import 'package:aicycle_buyme_plugin/common/extensions/localization_extension.dart';
 
 import '../constants/constants.dart';
 import 'error.dart';

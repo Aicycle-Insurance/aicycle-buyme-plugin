@@ -1,3 +1,5 @@
+import 'package:aicycle_buyme_plugin/common/config/global_variable.dart';
+
 import '../../../common/enum/check_car_state.dart';
 import '../../../common/theme/app_colors.dart';
 import '../../../common/theme/app_styles.dart';
@@ -35,11 +37,13 @@ class IsOneCarWidget extends StatelessWidget {
                   width: 20,
                   height: 20,
                   color: AppColors.greenA500,
+                  package: packageName,
                 )
               : Assets.svg.icWarning.svg(
                   width: 20,
                   height: 20,
                   color: AppColors.orangeA500,
+                  package: packageName,
                 ),
           const SizedBox(width: 10),
           Expanded(

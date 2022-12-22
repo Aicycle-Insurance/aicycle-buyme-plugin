@@ -42,6 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
       body: const AiCycleFolderView(
         folderId: 1,
         tokenKey: 'tokenKey',
+        locale: Locale('vi', 'VN'),
       ),
     );
   }

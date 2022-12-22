@@ -10,8 +10,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  #multi language
-  easy_localization: ^3.0.1
+  # #multi language
+  # easy_localization: ^3.0.1
 
   #state management
   flutter_bloc: ^8.0.1
@@ -81,7 +81,6 @@ flutter_gen:
 flutter:
   uses-material-design: true
   assets:
-    - assets/translations/
     - assets/images/
     - assets/svg/
     - assets/lotties/
